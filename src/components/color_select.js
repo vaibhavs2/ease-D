@@ -33,21 +33,21 @@ function getRandomColor() {
   }
   return color;
 }
-const Select_Color = () => {
+const ColorSelector = (props) => {
   return (
-    <View style={{flexDirection: 'row'}}>
+    <View style={[{ flexDirection: 'row' }]}>
       <Image
         source={require('../staticfiles/pencil.png')}
-        style={{marginRight: 3}}
+        style={{ marginRight: 3 }}
       />
       <FlatList
         horizontal
         data={colors}
         showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <TouchableOpacity>
             <View
-              style={[styles.circle_one, {backgroundColor: getRandomColor()}]}
+              style={[styles.circle_one, { backgroundColor: getRandomColor() }]}
             />
           </TouchableOpacity>
         )}
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Select_Color;
+export default ColorSelector;

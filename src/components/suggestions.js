@@ -25,10 +25,11 @@ const colors = [
   '#303A14',
 ];
 
-const Suggestions = () => {
+const Suggestions = (props) => {
   return (
-    <View style={{flexDirection: 'row'}}>
-      <View style={[styles.square, {flexDirection: 'row', marginRight: 1}]}>
+    <View style={{ flexDirection: 'row' }}>
+
+      <TouchableOpacity onPress={() => props.openSelector(true)} style={[styles.square, { flexDirection: 'row', marginRight: 1 }]}>
         <View
           style={{
             width: 25,
@@ -40,16 +41,18 @@ const Suggestions = () => {
         />
         <Image
           source={require('../staticfiles/pencil.png')}
-          style={{margin: 3}}
+          style={{ margin: 3 }}
           height={20}
           width={20}
         />
-      </View>
+      </TouchableOpacity>
+
+
       <FlatList
         horizontal
         data={colors}
         showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <TouchableOpacity>
             <View style={styles.square} />
           </TouchableOpacity>

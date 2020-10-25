@@ -20,7 +20,7 @@ const colors = [
   'e',
   '#303A14',
 ];
-const My_Sketches = () => {
+const My_Sketches = ({navigation}) => {
   const rowView = (
     <View style={{flexDirection: 'row'}}>
       <TouchableOpacity>
@@ -37,7 +37,12 @@ const My_Sketches = () => {
   return (
     <View style={styles.body}>
       <View style={{flexDirection: 'row', marginBottom: 12}}>
-        <AntDesign name="arrowleft" size={28} color="black" />
+        <AntDesign
+          name="arrowleft"
+          size={28}
+          color="black"
+          onPress={() => navigation.goBack()}
+        />
         <Text style={{marginLeft: '30%', fontWeight: 'bold'}}>Sketches</Text>
       </View>
       <FlatList

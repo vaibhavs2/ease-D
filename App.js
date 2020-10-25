@@ -6,43 +6,32 @@
  * @flow strict-local
  */
 
-import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Suggestions from './src/components/suggestions';
+import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './src/screens/login';
+import Signup from './src/screens/signup';
+import Info_Gather from './src/screens/info_gather';
+import DrawerScreen from './src/screens/drawer';
 
+import 'react-native-gesture-handler';
 const App = () => {
+  const Stack = createStackNavigator();
+
   return (
-    <View style={styles.body}>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginBottom: 12,
-          justifyContent: 'space-between',
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="drawer"
+        screenOptions={{
+          headerShown: false,
         }}>
-        <MaterialIcons name="arrow-back" size={28} color="black" />
-        <View
-          style={{
-            flexDirection: 'row',
-          }}>
-          <MaterialIcons
-            style={{padding: 4}}
-            name="undo"
-            size={24}
-            color="black"
-          />
-          <MaterialIcons
-            style={{padding: 4}}
-            name="redo"
-            size={24}
-            color="black"
-          />
-        </View>
-        <Text style={{fontWeight: 'bold', padding: 4}}>Clear</Text>
-      </View>
-      <View style={{height: '82%'}}></View>
-      <Suggestions />
-    </View>
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="signup" component={Signup} />
+        <Stack.Screen name="drawer" component={DrawerScreen} />
+        <Stack.Screen name="info" component={Info_Gather} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

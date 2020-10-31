@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import My_Sketches from '../screens/my_sketches';
-import Home from '../screens/home';
+import My_Sketches from './my_sketches';
+import Home from './home';
 import { View, Button } from 'react-native'
-import Sketching from '../screens/sketching';
+import Sketching from './sketching';
 import auth from '@react-native-firebase/auth';
 const Drawer = createDrawerNavigator();
 
@@ -28,8 +28,7 @@ function HomeScreen({ navigation }) {
 export default function DrawerScreen({ navigation }) {
 
   return (
-    <Drawer.Navigator initialRouteName="home" overlayColor="transparent">
-      <Drawer.Screen name="home" component={Home} />
+    <Drawer.Navigator initialRouteName="sketch" overlayColor="transparent">
       <Drawer.Screen name="sketch" component={Sketching} />
       <Drawer.Screen name="mysketch" component={My_Sketches} />
       <Drawer.Screen name="logout" component={HomeScreen} />

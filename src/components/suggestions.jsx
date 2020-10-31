@@ -29,7 +29,7 @@ const Suggestions = (props) => {
   return (
     <View style={{ flexDirection: 'row' }}>
 
-      <TouchableOpacity onPress={() => props.openSelector(true)} style={[styles.square, { flexDirection: 'row', marginRight: 1 }]}>
+      <TouchableOpacity onPress={props.showSelector} style={[styles.square, { flexDirection: 'row', marginRight: 1 }]}>
         <View
           style={{
             width: 25,

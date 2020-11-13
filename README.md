@@ -27,11 +27,12 @@ Install Node.js version 13+
 $ npm install 
 ```
 Paste the [Image data](https://drive.google.com/drive/folders/1mMHCBcoVjk2T4zHg0tMIp01RYWArStu9?usp=sharing) in Android phone ``` Picture/canvas/datasets/``` directory.
+as we have have trained our model for limited classes, and its in testing phase, so we are fetching images from phone for now.
+
 ##### Start react-native server
 ``` 
 $ npx react-native start
 ```
-as we have have trained our model for limited classes, and its in testing phase, so we are fetching images from phone for now.
 ##### Run app on your android device
 ```
 $ npx react-native run-android

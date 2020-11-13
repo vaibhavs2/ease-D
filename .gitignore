@@ -35,6 +35,14 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+#files
+chilu/
+.flowconfig
+.eslintrc.js
+.buckconfig
+.prettierrc.js
+.watchmanconfig
+
 # BUCK
 buck-out/
 \.buckd/

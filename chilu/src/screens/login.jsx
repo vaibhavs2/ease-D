@@ -38,9 +38,11 @@ function Login({ navigation }) {
 
   function forgotPassword() {
     setLoading(true)
-    if (!/\S+@\S+\.\S+/.test(getUserInfo.email.value)) {
+    if (! /\S+@\S+\.\S+/.test(getUserInfo.email.value)) {
       setUserInfo({ ...getUserInfo, email: { ...getUserInfo.email, error: 'Enter valid email' } })
       setLoading(false);
+
+      return
     }
     auth().sendPasswordResetEmail(getUserInfo.email.value)
       .then(function (user) {

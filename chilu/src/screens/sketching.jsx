@@ -111,7 +111,7 @@ class Sketching extends Component {
       if (error)
         console.log("error");
       else {
-        RNFetchBlob.fetch('POST', 'http://192.168.1.101:5000/get', {
+        RNFetchBlob.fetch('POST', 'http://192.168.1.102:5000/get', {
           Authorization: "",
           otherHeader: "foo",
           'Content-Type': 'multipart/form-data',

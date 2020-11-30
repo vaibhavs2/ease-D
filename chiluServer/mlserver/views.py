@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
 import io
 import _pickle as cPickle
+from .models import Images
 
 # from tensorflow.python.keras.backend import set_session
 # from tensorflow.keras.models import load_model
@@ -64,12 +65,13 @@ def requestApi(request):
 
     arr = MODEL.predict_proba(img)
     i_arr = arr[0].argsort()[-3:][::-1]
-    three = []
+    URLS = []
     for i in i_arr:
         print(SKETCHS[i])
-        three.append(SKETCHS[i])
+        for each_object in Images.objects.filter(img_class__img_class=SKETCHS[i]).order_by("?")[:3]:
+            URLS.append(each_object.image.url)
 
-    return JsonResponse({'first': three[0], 'second': three[1], 'third': three[2]})
+    return JsonResponse({'urls': URLS})
 
 
 def index(request):

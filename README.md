@@ -13,7 +13,7 @@ Install requirements.txt
 ```
 $ python manage.py runserver
 ```
-Change the IP and port in chilu/src/sketching.jsx
+Change the IP and port in chilu/src/sketching.jsx and in chilu/src/components/suggestions.jsx
 
 
 
@@ -26,8 +26,6 @@ Install Node.js version 13+
 ```
 $ npm install 
 ```
-Paste the [Image data](https://drive.google.com/drive/folders/1mMHCBcoVjk2T4zHg0tMIp01RYWArStu9?usp=sharing) in Android phone ``` Picture/canvas/datasets/``` directory.
-as we have have trained our model for limited classes, and its in testing phase, so we are fetching images from phone for now.
 
 ##### Start react-native server
 ``` 
@@ -41,5 +39,7 @@ You have to connect android device with system via adb or USB with USB-debugging
 
 if you want to use virtual device then follow https://developer.android.com/studio/run/emulator 
 Read about adb https://developer.android.com/studio/command-line/adb
+
+![Sample](https://github.com/vaibhavs2/ease-D/blob/main/sample.png?raw=true)
 
 

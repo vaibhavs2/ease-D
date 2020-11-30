@@ -29,7 +29,7 @@ class Sketching extends Component {
     this.OnStrokeEnd = this.OnStrokeEnd.bind(this);
     this.showHideColorSelect = this.showHideColorSelect.bind(this)
     this.SaveImage = this.SaveImage.bind(this)
-    this.state = { showRedo: false, showUndo: false, stroke: 1, strokeColor: 'black', isColorPickerShowing: false, showModal: { show: false, url: '' }, modelResult: {} };
+    this.state = { showRedo: false, showUndo: false, stroke: 1, strokeColor: 'black', isColorPickerShowing: false, showModal: { show: false, url: '' }, modelResult: [] };
     this.SelectorColor = RandomColor({ count: (Dimensions.get('window').width / 41) - 1, hue: 'random' });
     this.colorPickerSlideValue = new Animated.Value(40);
     this.colorPickerHideValue = new Animated.Value(0);
@@ -101,9 +101,10 @@ class Sketching extends Component {
   }
 
   OnStrokeEnd() {
-    let undo = false
+    let undo = true
     if (this.getFunction.getPaths().length < 1) {
-      undo = true
+      undo = false
+      console.log("true");
     }
 
 
@@ -120,23 +121,13 @@ class Sketching extends Component {
           { name: 'image', filename: 'image.png', data: result },
           // { name: 'image', filename: 'image.png', type: 'image/png', data: result },
         ]).then((resp) => {
-          this.setState({ showUndo: undo, showRedo: false, modelResult: resp.json() })
-          console.log(resp.json());
+          this.setState({ showUndo: undo, showRedo: false, modelResult: resp.json().urls })
         }).catch((err) => {
-          // ...
+          this.setState({ showUndo: undo, showRedo: false })
         })
       }
     })
 
-
-    // {
-    //   let imageName = Math.floor(new Date().getTime() / 1000).toString()
-
-    //   this.getFunction.save('png', true, 'canvas/temp', imageName, false, false, true)
-    //   this.setState({ mlImageName: imageName + '.png' })
-
-
-    // }
 
 
 

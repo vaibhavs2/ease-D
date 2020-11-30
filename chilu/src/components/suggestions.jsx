@@ -14,9 +14,8 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-import RNFetchBlob from 'react-native-fetch-blob';
 
-let DIR = RNFetchBlob.fs.dirs.PictureDir + "/canvas/datasets/";
+const  DOMAIN_URL = 'http://192.168.1.102:5000';
 
 const colors = [
   '#CC3838',
@@ -35,98 +34,12 @@ const Suggestions = (props) => {
   const [getImage, setImage] = useState([])
 
   useEffect(() => {
-    if (props.modelResult.first) {
+    if (props.modelResult) {
 
-      filesList = []
-
-      RNFetchBlob.fs.ls(DIR + props.modelResult.first)
-        // files will an array contains filenames
-        .then((files) => {
-          for (var i = 0; i < files.length; i++) {
-            filesList.push(`${props.modelResult.first}/${files[i]}`)
-          }
-        }).catch(() => { console.log("path not exists"); });
-      RNFetchBlob.fs.ls(DIR + props.modelResult.second)
-        .then((files) => {
-          for (var i = 0; i < files.length; i++) {
-            filesList.push(`${props.modelResult.second}/${files[i]}`)
-          }
-
-        }).catch(() => { console.log("path not exists"); });
-      RNFetchBlob.fs.ls(DIR + props.modelResult.third)
-        .then((files) => {
-          for (var i = 0; i < files.length; i++) {
-            filesList.push(`${props.modelResult.third}/${files[i]}`)
-          }
-          filesList.sort(() => 0.5 - Math.random()).slice(0, 6)
-          setImage(filesList.slice(0, 6))
-
-        }).catch(() => { console.log("path not exists"); });
-
-      console.log(getImage);
+      setImage(props.modelResult)
 
     }
-  }, [props.modelResult.first, props.modelResult.second, props.modelResult.third])
-
-
-
-
-  // const preprocessCanvas = (canvas) => {
-  //   let tensor = tf
-  //     .fromPixels(canvas) // Shape: (300, 300, 3) - RGB image
-  //     .resizeNearestNeighbor([28, 28]) // Shape: (28, 28, 3) - RGB image
-  //     .mean(2) // Shape: (28, 28) - grayscale
-  //     .expandDims(2) // Shape: (28, 28, 1) - network expects 3d values with channels in the last dimension
-  //     .expandDims() // Shape: (1, 28, 28, 1) - network makes predictions for "batches" of images
-  //     .toFloat(); // Network works with floating points inputs
-  //   return tensor.div(255.0); // Normalize [0..255] values into [0..1] range
-  // }
-  // console.log(`${dir}${props.mlImageName}`);
-
-  // async function processModel() {
-  //   const model = await tf.loadLayersModel("../staticfiles/model.json");
-  //   console.log(model.summary());
-  //   var b = await model.predict(preprocessCanvas(`${dir}${props.mlImageName}`)).data();
-  //   console.log(b);
-  //   return
-  // }
-  // processModel().then(() => { }).catch((error) => { console.log(error); })
-
-
-  //   fetch(Image.resolveAssetSource(require('../staticfiles/stroke.png')).uri).then((res) => {
-  //     var b = new ImageData
-  //     console.log(b);
-  //   })
-
-
-
-  //   const imageGet = require('get-image-data');
-  //   async function loadLocalImage(filename) {
-  //       return new Promise((res,rej)=>{
-  //       imageGet(filename, (err, info) => {
-  //         if(err){
-  //            rej(err);
-  //            return;
-  //         }
-  //         const image = tf.fromPixels(info.data)
-  //         console.log(image, '127');
-  //         res(image);
-  //       });
-  //     }
-  // loadLocalImage('../staticfiles/stroke.png');
-
-
-  // console.log(Image.resolveAssetSource(require('../staticfiles/stroke.png')).uri);
-
-
-
-  // async function Model() {
-  //   model = await tf
-  //     .loadModel("https://epfl-exts.github.io/react-course-project/public/model/model.json");
-
-  //   let b = await model.predict(preprocessCanvas(`${dir}${props.mlImageName}`)).data();
-  //   console.log(b);
-  // }
+  }, [props.modelResult[0]])
 
 
 
@@ -158,9 +71,9 @@ const Suggestions = (props) => {
         data={getImage}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => props.showSelectedImage(`file://${DIR}${item}`)}>
+          <TouchableOpacity onPress={() => props.showSelectedImage(`${DOMAIN_URL}${item}`)}>
             <Image
-              source={{ uri: `file://${DIR}${item}` }}
+              source={{ uri: `${DOMAIN_URL}${item}` }}
               style={[styles.square]}
               resizeMode='contain'
             />
@@ -173,7 +86,7 @@ const Suggestions = (props) => {
             data={colors}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => props.showSelectedImage('file:///storage/emulated/0/Pictures/canvas/Default.png')}>
+              <TouchableOpacity >
                 <Image
                   source={require('../staticfiles/pencil.png')}
                   style={[styles.square]}

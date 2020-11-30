@@ -25,7 +25,7 @@ SECRET_KEY = '_2-v)hi3wt)7&ba6=f$&))_sdi3_pdlabkc&g#i4k2&%*p#516'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.101', '192.168.1.102']
+ALLOWED_HOSTS = ['192.168.1.101', '192.168.1.102', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mlserver.apps.MlserverConfig'
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = 'media/'
+MEDIA_URL = ""
